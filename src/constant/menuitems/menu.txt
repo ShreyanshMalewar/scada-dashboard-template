@@ -1,0 +1,257 @@
+//old account menu popup with 4 dropdown options
+
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+
+
+const settings = ['Profile', 'Account', 'Login', 'Logout'];
+
+function User() {
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  return (
+      <Container maxWidth="xl">
+          <Box>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="./src/assets/user.svg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '1px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+      </Container>
+  );
+}
+export default User;
+---------------------------------------------------------------------------------------------------------------------------------------
+// this is routing for menuitems in 3 sections with parent child - relation
+
+const controlboard = {
+    id: "alarmsupervise",
+    title: "alarmsupervise",
+    type: "group",
+    children: [
+      {
+        id: "dashboard",
+        title: "mainpane",
+        type: "item",
+        url: "/dashboard",
+        breadcrumbs: false,
+      },
+      {
+        id: "adjustment",
+        title: "adjust",
+        type: "item",
+        url: "/adjustment",
+        breadcrumbs: false,
+      },
+      {
+        id: "settings",
+        title: "settings",
+        type: "item",
+        url: "/settings",
+        breadcrumbs: false,
+      },
+    ],
+  };
+  
+  export default controlboard;
+
+  const supportguide = {
+    id: "alarmhandle",
+    title: "alarmhandle",
+    type: "group",
+    children: [
+      {
+        id: "architecure",
+        title: "circuitimg",
+        type: "item",
+        url: "/architecture",
+        breadcrumbs: false,
+      },
+      {
+        id: "logs",
+        title: "reports",
+        type: "item",
+        url: "/logs",
+        breadcrumbs: false,
+      },
+      {
+        id: "settings",
+        title: "settings",
+        type: "item",
+        url: "/settings",
+        breadcrumbs: false,
+      },
+    ],
+  };
+  
+  export default supportguide;
+
+  const managealarm = {
+  id: "alarmsystem",
+  title: "alarmsystem",
+  type: "group",
+  children: [
+    {
+      id: "diagnose",
+      title: "diagnosis",
+      type: "item",
+      url: "/diagnose",
+      breadcrumbs: false,
+    },
+    {
+      id: "manualaction",
+      title: "action",
+      type: "item",
+      url: "/manualaction",
+      breadcrumbs: false,
+    },
+  ],
+};
+
+export default managealarm;
+
+------------------------------------------------------------------------------------------------------------------------------------
+//SIDEBAR MENU ITEMS DATA
+export const menuitems = [
+  {
+    id: "DashSection1",
+    title: "Alarm Systems",
+    caption: "Manage Alarm",
+    type: "group",
+    children: [
+      {
+        id: "Diagnosis",
+        title: "Diagnosis",
+        type: "item",
+        url: "/menuitems/diagnose",
+        icon: PolicyIcon,
+        breadcrumbs: false,
+      },
+      {
+        id: "Operations",
+        title: "Manual Action",
+        type: "item",
+        url: "/menuitems/manualaction",
+        icon: SwipeIcon,
+        breadcrumbs: false,
+      },
+    ],
+  },
+  {
+    id: "DashSection2",
+    title: "Alarm Supervise",
+    caption: "Control Board",
+    type: "group",
+    children: [
+      {
+        id: "Console",
+        title: "DashBoard",
+        type: "item",
+        url: "/menuitems/dashboard",
+        icon: TireRepairIcon,
+        breadcrumbs: false,
+      },
+      {
+        id: "Operate",
+        title: "Adjustment",
+        type: "item",
+        url: "/menuitems/adjustment",
+        icon: TuneIcon,
+        breadcrumbs: false,
+      },
+      {
+        id: "Repair",
+        title: "Settings",
+        type: "item",
+        url: "/menuitems/settings",
+        icon: SettingsOutlinedIcon,
+        breadcrumbs: false,
+      },
+    ],
+  },
+  {
+    id: "DashSection3",
+    title: "Alarm Handle",
+    caption: "Support & Guide",
+    type: "group",
+    children: [
+      {
+        id: "user1",
+        title: "Architecture",
+        type: "item",
+        url: "/menuitems/architecture",
+        icon: AccountTreeIcon,
+        breadcrumbs: false,
+      },
+      {
+        id: "Data1",
+        title: "Logs",
+        type: "item",
+        url: "/menuitems/logs",
+        icon: ListAltIcon,
+        breadcrumbs: false,
+      },
+      {
+        id: "Operate2",
+        title: "Info",
+        type: "item",
+        url: "/menuitems/info",
+        icon: InfoIcon,
+        breadcrumbs: false,
+      },
+    ],
+  },
+];
+
+
+// import managealarm  from './alarmsystem';
+// import controlboard from './alarmsupervise';
+// import supportguide from './alarmhandle';
+
+// const menuItems = {
+//     items: [managealarm, controlboard, supportguide]
+// };
+
+
+// export default menuItems;

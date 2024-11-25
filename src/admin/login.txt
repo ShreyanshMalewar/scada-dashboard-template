@@ -1,0 +1,171 @@
+
+import React from "react";
+import { useEffect, useRef, useState } from "react";
+import Logo from "../assets/logo";
+import MainCard from "../skel/MainCard";
+import Authwrap from "../profile/authwrap";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import { Alert, Input } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import TextField from "@mui/material/TextField";
+import { SendIcon } from "@mui/icons-material/Send";
+
+const USER_REGEX = /^[a-zA-Z]{3,23}$/;
+const PASSOWRD_REGEX =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+
+const Register = () => {
+  const userRef = useRef();
+  const errRef = useRef();
+
+  const [user, setUser] = useState("");
+  const [validName, setValidName] = useState(false);
+  const [userFocus, setUserFocus] = useState(false);
+
+  const [password, setpassword] = useState("");
+  const [validPassword, setValidPassword] = useState(false);
+  const [passwordFocus, setPasswordFocus] = useState(false);
+
+  const [matchPassword, setMatchPassword] = useState("");
+  const [validMatch, setValidMatch] = useState(false);
+  const [matchFocus, setMatchFocus] = useState(false);
+
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  useEffect(() => {
+    useRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    const result = USER_REGEX.test(user);
+    console.log(result);
+    console.log(user);
+    setValidName(result);
+  }, [user]);
+
+  useEffect(() => {
+    const result = PASSOWRD_REGEX.text(password);
+    console.log(result);
+    console.log(password);
+    setValidPassword(result);
+    const match = password === matchPassword;
+    setValidMatch(match);
+  }, [password, matchPassword]);
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, password, matchPassword]);
+
+  return (
+    <section>
+      <Authwrap>
+        <Grid
+          container
+          direction="column"
+          justifyContent="flex-end"
+          sx={{ minHeight: "100vh" }}
+        >
+          <Grid item xs={12}>
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              sx={{ minHeight: "calc(100vh - 68px)" }}
+            >
+              <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
+                <MainCard>
+                  <Grid
+                    container
+                    spacing={2}
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Grid item sx={{ mb: 3 }}>
+                      <Link to="www.alligatorinfosoft.com">
+                        <Logo />
+                      </Link>
+                    </Grid>
+                    <FormControl>
+                      <TextField
+                        label="username"
+                        id="outlined-start-adornment"
+                        sx={{ m: 1, width: "25ch" }}
+                        error={!validName && user.length > 0}
+                        >
+                          {validName && user.length > 0 && (
+                          <span className={validName ? "valid" : "hide"}>
+                            <CheckCircleOutlineIcon />
+                          </span>)}
+                          {!validName && user.length > 0 && (
+                          <span
+                            className={validName || !user ? "hide" : "invalid"}
+                          >
+                            <CancelIcon />
+                          </span>
+                          )}
+                          </TextField>
+                      <input
+                        type="text"
+                        id="username"
+                        ref={userRef}
+                        autoComplete="off"
+                        onChange={e.target.value}
+                        required
+                        aria-invalid={validName ? "false" : "true"}
+                        aria-describedby="uidnote"
+                        onFocus={() => setUserFocus(true)}
+                        onBlur={() => setUserFocus(false)}
+                      />
+                      <span className={validName ? "valid" : "hide"}></span>
+                      <span
+                        className={validName || !user ? "hide" : "invalid"}
+                      ></span>
+                      <Divider />
+                      <InputLabel htmlFor="outlined-adornment-password">
+                        Password
+                      </InputLabel>
+                      <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? "text" : "password"}
+                        endAdornment={
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              edge="end"
+                            >
+                              {showPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                        label="Password"
+                      />
+                      <Button variant="contained" endIcon={<SendIcon />}>
+  Submit
+</Button>
+                    </FormControl>
+                  </Grid>
+                </MainCard>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Authwrap>
+    </section>
+  );
+};
+
+export default Register;

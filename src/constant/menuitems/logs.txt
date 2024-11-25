@@ -1,0 +1,128 @@
+// import React from "react";
+// import { useSelector, useDispatch } from "react-redux";
+// import {
+//   Typography,
+//   CardMedia,
+//   Grid,
+//   Box,
+//   List,
+//   ListItem,
+//   Divider,
+//   Button,
+//   ButtonGroup,
+// } from "@mui/material";
+// import MainCard from "../../skel/MainCard";
+// import Machine from "../../assets/device.png";
+// import Alert from "@mui/material/Alert";
+// import { resolveAlarm, resetSelectedAlarm } from "../store/messageSlice"; // Import the actions from your slice
+
+// const Logs = () => {
+//   const dispatch = useDispatch();
+//   const alarms = useSelector((state) => state.alarms.alarms);
+//   const selectedAlarmId = useSelector((state) => state.alarms.selectedAlarm);
+//   const selectedAlarm = alarms.find((alarm) => alarm.id === selectedAlarmId);
+
+//   // Resolve Button Handler
+//   const handleResolve = () => {
+//     dispatch(resolveAlarm(selectedAlarmId));
+//     dispatch(resetSelectedAlarm()); // Optional: Reset the selected alarm
+//     // Navigate back to the alarm list or perform other actions as needed
+//   };
+
+//   if (!selectedAlarm) {
+//     return <Typography>No alarm selected or alarm not found</Typography>;
+//   }
+
+//   return (
+//     <Box
+//       sx={{
+//         margin: 11,
+//         border: "2px solid grey",
+//         display: "block",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         height: "85vh",
+//         padding: 1,
+//       }}
+//     >
+//       <MainCard
+//         title="Alarm Message"
+//         sx={{ maxWidth: 1500, height: "83vh", width: "170vh", margin: 1 }}
+//       >
+//         <Alert
+//           variant="filled"
+//           severity={selectedAlarm.type}
+//           sx={{ color: "black", marginBottom: 2 }}
+//         >
+//           {selectedAlarm.description} | Device ID: {selectedAlarm.deviceId} |
+//           Date: {new Date().toLocaleDateString()}
+//         </Alert>
+
+//         <Divider
+//           variant="fullWidth"
+//           sx={{ height: 2, backgroundColor: "gray", marginTop: "10px" }}
+//         />
+
+//         <Grid container spacing={2} sx={{ p: 1, marginTop: "15px" }}>
+//           {/* Image Section */}
+//           <Grid item xs={12} sm={6}>
+//             <CardMedia
+//               component="img"
+//               alt="Device Image"
+//               style={{
+//                 objectFit: "contain",
+//                 maxWidth: "100%",
+//                 marginTop: "16px",
+//               }}
+//               height="300"
+//               image={Machine}
+//               title="Device Image"
+//             />
+//           </Grid>
+
+//           {/* Information Section */}
+//           <Grid
+//             item
+//             xs={12}
+//             sm={6}
+//             sx={{ display: "flex", flexDirection: "column" }}
+//           >
+//             {/* Description */}
+//             <Typography variant="h5" gutterBottom>
+//               Description - Cause of Error/Info/Warning
+//             </Typography>
+//             <List>
+//               <ListItem>{selectedAlarm.description}</ListItem>
+//             </List>
+
+//             {/* Operator Instructions */}
+//             <Typography variant="h5" gutterBottom sx={{ marginTop: "16px" }}>
+//               Operator Instructions - Troubleshooting
+//             </Typography>
+//             <List>
+//               {selectedAlarm.instructions.map((instruction, index) => (
+//                 <ListItem key={index}>{instruction}</ListItem>
+//               ))}
+//             </List>
+
+//             {/* Action Buttons */}
+//             <Typography variant="h5" gutterBottom sx={{ marginTop: "16px" }}>
+//               Action
+//             </Typography>
+//             <ButtonGroup
+//               variant="contained"
+//               aria-label="medium secondary button group"
+//             >
+//               <Button color="secondary" onClick={handleResolve}>
+//                 Resolve
+//               </Button>
+//               {/* Include other buttons as needed */}
+//             </ButtonGroup>
+//           </Grid>
+//         </Grid>
+//       </MainCard>
+//     </Box>
+//   );
+// };
+
+// export default Logs;
