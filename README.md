@@ -73,6 +73,15 @@ On some READMEs, you may see small images that convey metadata, such as whether 
 ## Visuals
 Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 
+![Register](https://github.com/user-attachments/assets/71c4b81e-3679-4abc-aa63-9b95873cf6d4)
+
+![Page1](https://github.com/user-attachments/assets/bc13e0a1-4d90-46ad-9aac-0492c37354f0)
+
+![Screenshot from 2024-05-10 14-49-26](https://github.com/user-attachments/assets/33d51383-7705-44be-89bd-8c6d7141da90)
+
+![Screenshot from 2024-05-10 14-49-37](https://github.com/user-attachments/assets/4c3239be-778a-4834-937c-4222a6fa3bfa)
+
+
 ## Installation
 Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
